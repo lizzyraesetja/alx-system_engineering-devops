@@ -11,3 +11,4 @@ What's new
 Being unique is better than being perfect
 Being unique is better than being perfect
 It must be in that file
+Count that word
