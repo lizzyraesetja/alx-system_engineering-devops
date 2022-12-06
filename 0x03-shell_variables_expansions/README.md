@@ -7,3 +7,4 @@ Global variables
 Local variables
 7-create_global_variab
 8-true_knowledge
+9-divide_and_rule
