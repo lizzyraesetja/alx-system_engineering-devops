@@ -1,3 +1,4 @@
-#!/usr/bin/env bash\
-# prints script's PID
-echo "$$"
+#!/usr/bin/env bash
+# Returns its own pid
+
+echo $$
