@@ -1,18 +1,25 @@
 #!/usr/bin/python3
+"""
+place holder
+"""
 
-import json
-import requests as r
 
-
-if __name__ == '__main__':
-    url = "https://jsonplaceholder.typicode.com/"
-    user = r.get(url + "users").json()
-
-    with open("todo_all_employees.json", "w") as jsonfile:
-        json.dump({usr.get("id"): [{
-            "username": usr.get("username"),
-            "task": e.get("title"),
-            "completed": e.get("completed")
-        } for e in r.get(url + "todos",
-                         params={"userId": usr.get("id")}).json()]
-            for usr in user}, jsonfile)	
+if __name__ == "__main__":
+    import requests
+    import json
+    users = requests.get(
+        "https://jsonplaceholder.typicode.com/users")
+    users = users.json()
+    result = {}
+    for user in users:
+        todos = requests.get(
+            "https://jsonplaceholder.typicode.com/todos?userId={}"
+            .format(user["id"]))
+        todos = todos.json()
+        result[user["id"]] = []
+        for todo in todos:
+            result[user["id"]].append(
+                {"username": user["username"],
+                    "task": todo["title"], "completed": todo["completed"]})
+    with open("todo_all_employees.json", 'w') as result_file:
+        json.dump(result, result_file)
